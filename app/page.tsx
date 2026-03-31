@@ -19,7 +19,7 @@ const MainPage = () => {
         <Grid />
         <RecentProjects />
         <PoweredBy />
-        <Clients />
+        {/* <Clients /> */}
         <Experience />
         <Approach />
         <Footer />

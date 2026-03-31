@@ -43,12 +43,13 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     <AnimatePresence mode="wait">
       {/* Logo — fixed top-left, same show/hide behaviour */}
       <motion.div
+        key="logo"
         initial={{ opacity: 1, y: -100 }}
         animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
         transition={{ duration: 0.2 }}
         className="fixed left-6 top-0 z-[5000]"
       >
-        <Link href="#" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/super.png"
             alt="D360 ACE"
@@ -64,6 +65,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
       {/* Nav links — centred */}
       <motion.nav
+        key="navigation"
         initial={{
           opacity: 1,
           y: -100,
@@ -87,6 +89,19 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
             className={cn(
               "relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300"
             )}
+            onClick={(e) => {
+              // Handle smooth scrolling for anchor links
+              if (navItem.link.startsWith('#')) {
+                e.preventDefault();
+                const element = document.querySelector(navItem.link);
+                if (element) {
+                  element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }
+            }}
           >
             <span className="!cursor-pointer text-sm">{navItem.name}</span>
           </Link>

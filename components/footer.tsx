@@ -29,7 +29,7 @@ export const Footer = () => {
           real talent.
         </p>
 
-        <Link href="#" className="md:mt-10">
+        <Link href="/contact-us" className="md:mt-10">
           <MagicButton
             title="Get Started Now"
             icon={<FaLocationArrow />}

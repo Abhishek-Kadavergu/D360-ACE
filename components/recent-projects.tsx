@@ -21,7 +21,7 @@ export const RecentProjects = () => {
               key={id}
               className="flex h-[32rem] w-[90vw] items-center justify-center sm:h-[41rem] sm:w-[570px] lg:min-h-[32.5rem]"
             >
-              <PinContainer title="Learn More" href={link}>
+              <PinContainer title="" href={link}>
                 <div className="relative mb-10 flex h-[30vh] w-[80vw] items-center justify-center overflow-hidden sm:h-[40vh] sm:w-[570px]">
                   <div className="relative h-full w-full overflow-hidden bg-[#13162d] lg:rounded-3xl">
                     <Image
@@ -51,7 +51,7 @@ export const RecentProjects = () => {
 
                 <div className="mb-3 mt-7 flex items-center justify-between">
                   <div className="flex items-center">
-                    {iconLists.map((icon, i) => (
+                    {/* {iconLists.map((icon, i) => (
                       <div
                         key={icon}
                         className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.2] bg-black lg:h-10 lg:w-10"
@@ -67,10 +67,10 @@ export const RecentProjects = () => {
                           className="p-2"
                         />
                       </div>
-                    ))}
+                    ))} */}
                   </div>
 
-                  <div className="flex items-center justify-center">
+                  {/* <div className="flex items-center justify-center">
                     <Link
                       href={link}
                       className="flex text-sm text-purple md:text-xs lg:text-xl"
@@ -79,7 +79,7 @@ export const RecentProjects = () => {
                     </Link>
 
                     <FaLocationArrow className="ms-3" color="#cbacf9" />
-                  </div>
+                  </div> */}
                 </div>
               </PinContainer>
             </div>
