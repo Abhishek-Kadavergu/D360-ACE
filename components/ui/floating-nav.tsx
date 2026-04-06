@@ -57,9 +57,9 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
             height={56}
             className="h-40 w-40 rounded-lg object-contain"
           />
-          <span className="text-sm font-semibold uppercase tracking-wide text-white whitespace-nowrap">
+          {/* <span className="text-sm font-semibold uppercase tracking-wide text-white whitespace-nowrap">
             BY - PIAZZA CONSULTING GROUP
-          </span>
+          </span> */}
         </Link>
       </motion.div>
 
@@ -91,13 +91,13 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
             )}
             onClick={(e) => {
               // Handle smooth scrolling for anchor links
-              if (navItem.link.startsWith('#')) {
+              if (navItem.link.startsWith("#")) {
                 e.preventDefault();
                 const element = document.querySelector(navItem.link);
                 if (element) {
                   element.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                    behavior: "smooth",
+                    block: "start",
                   });
                 }
               }
