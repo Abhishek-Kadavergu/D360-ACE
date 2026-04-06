@@ -40,7 +40,7 @@ const ContactUsPage = () => {
 
     setIsSubmitted(true);
     setIsSubmitting(false);
-    
+
     // Clear form after 3 seconds
     setTimeout(() => {
       setFormData({
@@ -69,7 +69,10 @@ const ContactUsPage = () => {
               className="left-full top-10 h-[80vh] w-[50vw]"
               fill="purple"
             />
-            <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="blue" />
+            <Spotlight
+              className="left-80 top-28 h-[80vh] w-[50vw]"
+              fill="blue"
+            />
           </div>
 
           <div className="absolute left-0 top-0 flex h-screen w-full items-center justify-center bg-white bg-grid-black/[0.2] dark:bg-black-100 dark:bg-grid-white/[0.03]">
@@ -88,7 +91,8 @@ const ContactUsPage = () => {
               />
 
               <p className="mb-4 text-center text-sm md:text-lg md:tracking-wider lg:text-2xl">
-                Ready to experience bias-free, intelligent hiring? Let's discuss how D360 ACE can revolutionize your recruitment process.
+                Ready to experience bias-free, intelligent hiring? Let's discuss
+                how D360 ACE can revolutionize your recruitment process.
               </p>
             </div>
           </div>
@@ -96,22 +100,26 @@ const ContactUsPage = () => {
 
         {/* Contact Form Section */}
         <div className="relative z-10 mx-auto mb-20 max-w-4xl">
-          <div className="rounded-2xl border border-purple-500/20 bg-black-200/50 p-8 backdrop-blur-lg md:p-12">
+          <div className="border-purple-500/20 rounded-2xl border bg-black-200/50 p-8 backdrop-blur-lg md:p-12">
             {isSubmitted ? (
-              <div className="text-center py-12">
+              <div className="py-12 text-center">
                 <div className="mb-6 text-6xl">✅</div>
                 <h3 className="mb-4 text-2xl font-bold text-white">
                   Thank you for reaching out!
                 </h3>
                 <p className="text-lg text-gray-300">
-                  We've received your message and will get back to you within 24 hours.
+                  We've received your message and will get back to you within 24
+                  hours.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-300">
+                    <label
+                      htmlFor="name"
+                      className="mb-2 block text-sm font-medium text-gray-300"
+                    >
                       Full Name *
                     </label>
                     <input
@@ -121,12 +129,15 @@ const ContactUsPage = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full rounded-lg border border-purple-500/20 bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                      className="border-purple-500/20 focus:border-purple-500 focus:ring-purple-500/20 w-full rounded-lg border bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:outline-none focus:ring-2"
                       placeholder="John Doe"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-medium text-gray-300"
+                    >
                       Work Email *
                     </label>
                     <input
@@ -136,14 +147,17 @@ const ContactUsPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full rounded-lg border border-purple-500/20 bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                      className="border-purple-500/20 focus:border-purple-500 focus:ring-purple-500/20 w-full rounded-lg border bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:outline-none focus:ring-2"
                       placeholder="john@company.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="mb-2 block text-sm font-medium text-gray-300">
+                  <label
+                    htmlFor="company"
+                    className="mb-2 block text-sm font-medium text-gray-300"
+                  >
                     Company Name
                   </label>
                   <input
@@ -152,13 +166,16 @@ const ContactUsPage = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full rounded-lg border border-purple-500/20 bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                    className="border-purple-500/20 focus:border-purple-500 focus:ring-purple-500/20 w-full rounded-lg border bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:outline-none focus:ring-2"
                     placeholder="Acme Corporation"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-300">
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block text-sm font-medium text-gray-300"
+                  >
                     Message *
                   </label>
                   <textarea
@@ -168,7 +185,7 @@ const ContactUsPage = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full rounded-lg border border-purple-500/20 bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 resize-none"
+                    className="border-purple-500/20 focus:border-purple-500 focus:ring-purple-500/20 w-full resize-none rounded-lg border bg-black-300/50 px-4 py-3 text-white placeholder-black backdrop-blur-sm transition-colors focus:outline-none focus:ring-2"
                     placeholder="Tell us about your hiring challenges and how we can help..."
                   />
                 </div>
@@ -178,8 +195,12 @@ const ContactUsPage = () => {
                     title={isSubmitting ? "Sending..." : "Send Message"}
                     icon={<FaLocationArrow />}
                     position="right"
-                    handleClick={() => document.querySelector('form')?.requestSubmit()}
-                    otherClasses={isSubmitting ? "opacity-50 cursor-not-allowed" : ""}
+                    handleClick={() =>
+                      document.querySelector("form")?.requestSubmit()
+                    }
+                    otherClasses={
+                      isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                    }
                   />
                 </div>
               </form>
@@ -190,28 +211,47 @@ const ContactUsPage = () => {
         {/* Additional Information */}
         <div className="relative z-10 mx-auto mb-20 max-w-6xl">
           <div className="grid gap-8 md:grid-cols-3">
-            <div className="rounded-xl border border-purple-500/20 bg-black-200/50 p-6 backdrop-blur-lg">
+            <div className="border-purple-500/20 rounded-xl border bg-black-200/50 p-6 backdrop-blur-lg">
               <div className="mb-4 text-3xl">📧</div>
-              <h3 className="mb-2 text-xl font-semibold text-white">Email Us</h3>
-              <p className="text-gray-300">contact@d360ace.com</p>
-              <p className="text-sm text-gray-400">We respond within 24 hours</p>
+              <h3 className="mb-2 text-xl font-semibold text-white">
+                Email Us
+              </h3>
+              <p className="text-gray-300">info@pcongrp.com</p>
+              {/* <p className="text-sm text-gray-400">
+                We respond within 24 hours
+              </p> */}
             </div>
-            <div className="rounded-xl border border-purple-500/20 bg-black-200/50 p-6 backdrop-blur-lg">
+            <div className="border-purple-500/20 rounded-xl border bg-black-200/50 p-6 backdrop-blur-lg">
               <div className="mb-4 text-3xl">📱</div>
               <h3 className="mb-2 text-xl font-semibold text-white">Call Us</h3>
-              <p className="text-gray-300">+1 (555) 123-4567</p>
+              <p className="text-gray-300">877-317-1680</p>
               <p className="text-sm text-gray-400">Mon-Fri, 9AM-6PM EST</p>
             </div>
-            <div className="rounded-xl border border-purple-500/20 bg-black-200/50 p-6 backdrop-blur-lg">
-              <div className="mb-4 text-3xl">💬</div>
-              <h3 className="mb-2 text-xl font-semibold text-white">Live Chat</h3>
-              <p className="text-gray-300">Available on website</p>
-              <p className="text-sm text-gray-400">Instant support during business hours</p>
-            </div>
+            <a href="https://piazza-website-beta.vercel.app/">
+              <div className="border-purple-500/20 rounded-xl border bg-black-200/50 p-6 backdrop-blur-lg">
+                <div className="mb-4 text-3xl">💬</div>
+                <h3 className="mb-2 text-xl font-semibold text-white">
+                  Powered By
+                </h3>
+
+                <a
+                  href="https://piazza-website-beta.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-purple-400 text-gray-300 transition-colors duration-200"
+                >
+                  Piazza Consulting Group
+                </a>
+
+                <p className="mt-2 text-sm text-gray-400">
+                  Visit our official website
+                </p>
+              </div>
+            </a>
           </div>
         </div>
-
-        <Footer />
+        {/* 
+        <Footer /> */}
       </div>
     </main>
   );

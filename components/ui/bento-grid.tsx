@@ -166,13 +166,13 @@ export const BentoGridItem = ({
             <div className="group relative mt-5">
               <BentoGridLottie copied={copied} />
 
-              <MagicButton
+              {/* <MagicButton
                 title={copied ? "Email copied!" : "Copy my email"}
                 icon={<IoCopyOutline />}
                 otherClasses="!bg-[#161a31]"
                 handleClick={handleCopy}
                 asChild
-              />
+              /> */}
             </div>
           )}
         </div>
