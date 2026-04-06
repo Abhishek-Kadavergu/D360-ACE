@@ -1,10 +1,11 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { MagicButton } from "@/components/ui/magic-button";
+import { cn } from "@/lib/utils";
 
 export const Approach = () => {
   return (
@@ -65,13 +66,52 @@ type CardProps = {
   children?: React.ReactNode;
 };
 
+function usePointerHover() {
+  const [hasFinePointerHover, setHasFinePointerHover] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setHasFinePointerHover(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  return hasFinePointerHover;
+}
+
 const Card = ({ title, description, icon, children }: CardProps) => {
   const [hovered, setHovered] = useState(false);
+  const [inView, setInView] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const hasFinePointerHover = usePointerHover();
+
+  useEffect(() => {
+    if (hasFinePointerHover) return;
+
+    const el = cardRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const open =
+          entry.isIntersecting && entry.intersectionRatio >= 0.2;
+        setInView(open);
+      },
+      { rootMargin: "-8% 0px -8% 0px", threshold: [0, 0.1, 0.2, 0.35, 0.5, 0.75, 1] }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasFinePointerHover]);
+
+  const revealed = hasFinePointerHover ? hovered : inView;
 
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      ref={cardRef}
+      onMouseEnter={() => hasFinePointerHover && setHovered(true)}
+      onMouseLeave={() => hasFinePointerHover && setHovered(false)}
       className="group/canvas-card relative mx-auto flex w-full max-w-sm items-center justify-center rounded-3xl border border-black/[0.2] p-4 dark:border-white/[0.2] lg:h-[35rem]"
     >
       <Icon className="absolute -left-3 -top-3 h-6 w-6 text-black dark:text-white" />
@@ -80,7 +120,7 @@ const Card = ({ title, description, icon, children }: CardProps) => {
       <Icon className="absolute -bottom-3 -right-3 h-6 w-6 text-black dark:text-white" />
 
       <AnimatePresence>
-        {hovered && (
+        {revealed && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -92,16 +132,29 @@ const Card = ({ title, description, icon, children }: CardProps) => {
       </AnimatePresence>
 
       <div className="relative z-20">
-        <div className="absolute left-[50%] top-[50%] mx-auto flex w-full -translate-x-[50%] -translate-y-[50%] items-center justify-center text-center transition duration-200 group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0">
+        <div
+          className={cn(
+            "absolute left-[50%] top-[50%] mx-auto flex w-full -translate-x-[50%] -translate-y-[50%] items-center justify-center text-center transition duration-200 group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0",
+            revealed && "-translate-y-4 opacity-0"
+          )}
+        >
           {icon}
         </div>
 
-        <h2 className="relative z-10 mt-4 text-3xl font-bold text-black opacity-0 transition  duration-200 group-hover/canvas-card:-translate-y-2 group-hover/canvas-card:text-white group-hover/canvas-card:opacity-100 dark:text-white">
+        <h2
+          className={cn(
+            "relative z-10 mt-4 text-3xl font-bold text-black opacity-0 transition duration-200 group-hover/canvas-card:-translate-y-2 group-hover/canvas-card:text-white group-hover/canvas-card:opacity-100 dark:text-white",
+            revealed && "-translate-y-2 text-white opacity-100"
+          )}
+        >
           {title}
         </h2>
 
         <p
-          className="relative z-10 mt-4 text-sm font-bold text-black opacity-0 transition  duration-200 group-hover/canvas-card:-translate-y-2 group-hover/canvas-card:text-white group-hover/canvas-card:opacity-100 dark:text-white"
+          className={cn(
+            "relative z-10 mt-4 text-sm font-bold text-black opacity-0 transition duration-200 group-hover/canvas-card:-translate-y-2 group-hover/canvas-card:text-white group-hover/canvas-card:opacity-100 dark:text-white",
+            revealed && "-translate-y-2 text-white opacity-100"
+          )}
           style={{
             color: "#e4ecff",
           }}
